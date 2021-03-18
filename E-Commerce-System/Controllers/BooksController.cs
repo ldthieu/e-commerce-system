@@ -10,7 +10,7 @@ using Neo4j.Driver;
 namespace E_Commerce_System.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    //[ApiController]
     public class BooksController : ControllerBase
     {
         private readonly BookService _bookService;

@@ -1,48 +1,93 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - E_Commerce_System</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Home-4 || Plantmore</title>
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow" />
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/HomePage/img/favicon.ico">
+    <!--All Css Here-->
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/bootstrap.min.css">
+    <!-- Linearicon CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/linearicons.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/font-awesome.min.css">
+
+    <!-- Animate CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/animate.css">
+    <!-- Owl Carousel CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/owl.carousel.min.css">
+    <!-- Slick CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/slick.css">
+    <!-- Meanmenu CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/meanmenu.min.css">
+    <!-- Easyzoom CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/easyzoom.css">
+    <!-- Venobox CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/venobox.css">
+    <!-- Jquery Ui CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/jquery-ui.css">
+    <!-- Nice Select CSS-->
+    <link rel="stylesheet" href="~/HomePage/css/nice-select.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="~/HomePage/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/HomePage/css/responsive.css">
+    <!-- Modernizr Js -->
+    <script src="~/HomePage/js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">E_Commerce_System</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="wrapper">
+        <partial name="Header.cshtml" />
+        @RenderBody()
+        <partial name="Footer.cshtml" />
     </div>
+    
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - E_Commerce_System - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/HomePage/js/vendor/jquery-1.12.4.min.js"></script>
+    <!--Popper-->
+    <script src="~/HomePage/js/popper.min.js"></script>
+    <!--Bootstrap-->
+    <script src="~/HomePage/js/bootstrap.min.js"></script>
+    <!--Imagesloaded-->
+    <script src="~/HomePage/js/imagesloaded.pkgd.min.js"></script>
+    <!--Isotope-->
+    <script src="~/HomePage/js/isotope.pkgd.min.js"></script>
+    <!--Waypoints-->
+    <script src="~/HomePage/js/waypoints.min.js"></script>
+    <!--Counterup-->
+    <script src="~/HomePage/js/jquery.counterup.min.js"></script>
+    <!--Carousel-->
+    <script src="~/HomePage/js/owl.carousel.min.js"></script>
+    <!--Slick-->
+    <script src="~/HomePage/js/slick.min.js"></script>
+    <!--Meanmenu-->
+    <script src="~/HomePage/js/jquery.meanmenu.min.js"></script>
+    <!--Easyzoom-->
+    <script src="~/HomePage/js/easyzoom.min.js"></script>
+    <!--Nice Select-->
+    <script src="~/HomePage/js/jquery.nice-select.min.js"></script>
+    <!--ScrollUp-->
+    <script src="~/HomePage/js/jquery.scrollUp.min.js"></script>
+    <!--Wow-->
+    <script src="~/HomePage/js/wow.min.js"></script>
+    <!--Venobox-->
+    <script src="~/HomePage/js/venobox.min.js"></script>
+    <!--Jquery Ui-->
+    <script src="~/HomePage/js/jquery-ui.js"></script>
+    <!--Countdown-->
+    <script src="~/HomePage/js/jquery.countdown.min.js"></script>
+    <!--Plugins-->
+    <script src="~/HomePage/js/plugins.js"></script>
+    <!--Main Js-->
+    <script src="~/HomePage/js/main.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
