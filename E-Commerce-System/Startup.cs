@@ -38,6 +38,12 @@ namespace E_Commerce_System
             services.AddSingleton<INeo4jSettings>(sp =>
                 sp.GetRequiredService<IOptions<Neo4jSettings>>().Value);
 
+            services.Configure<SqlServerSettings>(
+                Configuration.GetSection(nameof(SqlServerSettings)));
+
+            services.AddSingleton<ISqlServerSettings>(sp =>
+                sp.GetRequiredService<IOptions<SqlServerSettings>>().Value);
+
             services.AddControllers();
             services.AddSingleton<BookService>();
             services.AddSingleton<Neo4jService>();
