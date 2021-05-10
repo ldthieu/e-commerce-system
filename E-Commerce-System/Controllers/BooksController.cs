@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Neo4j.Driver;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_Commerce_System.Controllers
 {
@@ -15,13 +16,16 @@ namespace E_Commerce_System.Controllers
     {
         private readonly BookService _bookService;
         private readonly IBookNeo4jService _bookNeo4JService;
+        private readonly ADBMSContext _aDBMSContext;
 
-        public BooksController(BookService bookService, IBookNeo4jService bookNeo4JService)
+        public BooksController(BookService bookService, IBookNeo4jService bookNeo4JService, ADBMSContext aDBMSContext)
         {
             _bookService = bookService;
             _bookNeo4JService = bookNeo4JService;
+            _aDBMSContext = aDBMSContext;
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult<List<Book>> Get() =>
             _bookService.Get();
@@ -84,6 +88,21 @@ namespace E_Commerce_System.Controllers
             try
             {
                 var res = _bookNeo4JService.Get();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet]
+        [Route("/B")]
+        public Task<ReturnObject> AddCategory(string Name, string Code)
+        {
+            try
+            {
+                var res = _bookNeo4JService.AddCategory(Name, Code);
                 return res;
             }
             catch (Exception ex)

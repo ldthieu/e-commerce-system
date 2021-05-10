@@ -3,6 +3,7 @@ using Neo4j.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace E_Commerce_System.Services
@@ -37,9 +38,36 @@ namespace E_Commerce_System.Services
                 await session.CloseAsync();
             }
         }
+
+        public async Task<ReturnObject> AddCategory(string Name, string Code)
+        {
+            ReturnObject res = new ReturnObject();
+            var statementText = new StringBuilder();
+            statementText.Append("CREATE (category:Category {Name: $Name, Code: $Code})");
+            var statementParameters = new Dictionary<string, object>
+            {
+                {"Name", Name },
+                {"Code", Code },
+            };
+            var session = _neo4JService.CreateSession();
+            try
+            {
+                var result = await session.WriteTransactionAsync(tx => tx.RunAsync(statementText.ToString(), statementParameters));
+                res.statusCode = 200;
+                res.message = "Tạo thành công";
+            }
+            catch(Exception ex)
+            {
+                res.statusCode = 500;
+                res.message = ex.Message.ToString();
+            }
+            return res;
+        }
+
     }
     public interface IBookNeo4jService
     {
         Task<List<string>> Get();
+        Task<ReturnObject> AddCategory(string Name, string Code);
     }
 }

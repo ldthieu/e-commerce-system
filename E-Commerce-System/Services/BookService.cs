@@ -16,7 +16,7 @@ namespace E_Commerce_System.Services
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _books = database.GetCollection<Book>(settings.BooksCollectionName);
+            _books = database.GetCollection<Book>("Books");
         }
 
         public List<Book> Get() =>
