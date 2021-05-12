@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_Commerce_System.Models
 {
@@ -8,6 +9,8 @@ namespace E_Commerce_System.Models
         public string CateId { get; set; }
         public string CateName { get; set; }
         public string ParentId { get; set; }
+        [NotMapped]
+        public string ParentName { get; set; }
         public bool? Active { get; set; }
         public DateTime? CreatedAt { get; set; }
         public string CreatedBy { get; set; }

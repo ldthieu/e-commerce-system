@@ -1,5 +1,6 @@
 ﻿using E_Commerce_System.Common;
 using E_Commerce_System.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,7 @@ namespace E_Commerce_System.Services
         {
             if (userInfo != null)
             {
+                IdentityOptions _options = new IdentityOptions();
                 //create claims details based on the user information
                 var claims = new[] {
                     new Claim(JwtRegisteredClaimNames.Sub, JWTSetting.Subject),
@@ -62,7 +64,10 @@ namespace E_Commerce_System.Services
                     new Claim("FirstName", userInfo.FirstName),
                     new Claim("LastName", userInfo.LastName),
                     new Claim("UserName", userInfo.UserName),
-                    new Claim("Email", userInfo.Email)
+                    new Claim("Email", userInfo.Email),
+                    new Claim("Role", "Admin"),
+                    new Claim(_options.ClaimsIdentity.UserNameClaimType, userInfo.UserId +"-"+ userInfo.UserName),
+                    new Claim(_options.ClaimsIdentity.RoleClaimType, "Admin")
                    };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JWTSetting.Key));

@@ -12,7 +12,7 @@ namespace E_Commerce_System.Controllers
 {
     [Route("api/[controller]")]
     //[ApiController]
-    public class BooksController : ControllerBase
+    public class BooksController : BaseController
     {
         private readonly BookService _bookService;
         private readonly IBookNeo4jService _bookNeo4JService;

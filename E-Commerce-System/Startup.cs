@@ -1,11 +1,13 @@
 using E_Commerce_System.Common;
 using E_Commerce_System.Models;
 using E_Commerce_System.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -66,6 +68,7 @@ namespace E_Commerce_System
             services.AddScoped<INeo4jService, Neo4jService>();
             services.AddScoped<IBookNeo4jService, BookNeo4jService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
             services.AddControllersWithViews();
             services.AddControllers().AddNewtonsoftJson(options => options.UseMemberCasing());
 
@@ -93,17 +96,23 @@ namespace E_Commerce_System
                     }
                 };
             });
+
             services.AddMvc();
             services.AddSession();
-            //services.AddMvc();
 
-            //services.AddSession(options =>
-            //{
-            //    options.Cookie.Name = "JWToken";
-            //    options.IdleTimeout = TimeSpan.FromHours(5);
-            //    options.Cookie.HttpOnly = true;
-            //    options.Cookie.IsEssential = true;
-            //});
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "JWToken";
+                options.IdleTimeout = TimeSpan.FromHours(5);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.Cookie.Expiration = TimeSpan.FromHours(5);
+            });
 
         }
 
@@ -151,7 +160,6 @@ namespace E_Commerce_System
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
-
         }
     }
 }

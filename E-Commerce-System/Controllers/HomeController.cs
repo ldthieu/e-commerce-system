@@ -9,9 +9,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace E_Commerce_System.Controllers
 {
@@ -29,17 +31,6 @@ namespace E_Commerce_System.Controllers
         //[Authorize]
         public IActionResult Index()
         {
-            //var user = _userService.Authenticate("admin@gmail.com", "abc-12345");
-
-            //if (user != null)
-            //{
-            //    var token = _userService.GenerateJSONWebToken(user);
-            //    HttpContext.Session.SetString("JWToken", new JwtSecurityTokenHandler().WriteToken(token));
-            //    var identity = new System.Security.Principal.GenericIdentity(user.UserName);
-            //    var principal = new GenericPrincipal(identity, new string[0]);
-            //    HttpContext.User = principal;
-            //    Thread.CurrentPrincipal = principal;
-            //}
             return View();
         }
 
@@ -63,6 +54,27 @@ namespace E_Commerce_System.Controllers
                 var token = _userService.GenerateJSONWebToken(user);
                 HttpContext.Session.SetString("JWToken", token.ToString());
             }
+            return Redirect("~/Home/Index");
+        }
+
+        public IActionResult Login()
+        {
+            var user = _userService.Authenticate("admin@gmail.com", "abc-12345");
+
+            if (user != null)
+            {
+                var token = _userService.GenerateJSONWebToken(user);
+                HttpContext.Session.SetString("JWToken", new JwtSecurityTokenHandler().WriteToken(token));
+                var identity = new System.Security.Principal.GenericIdentity(user.UserName);
+                var principal = new GenericPrincipal(identity, new string[0]);
+                HttpContext.User = principal;
+                Thread.CurrentPrincipal = principal;
+            }
+            return Redirect("~/Home/Index");
+        }
+        public IActionResult Logoff()
+        {
+            HttpContext.Session.Remove("JWToken");
             return Redirect("~/Home/Index");
         }
     }

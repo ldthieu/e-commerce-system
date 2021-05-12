@@ -41,7 +41,6 @@ namespace E_Commerce_System.Services
         {
             return Neo4jDriver.AsyncSession();
         }
-
     }
 
     public interface INeo4jService
